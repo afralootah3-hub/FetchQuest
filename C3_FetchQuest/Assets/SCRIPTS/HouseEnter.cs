@@ -1,16 +1,26 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HouseEnter : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    public Transform houseReturn;
+
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.gameObject.tag == "Player")
+        {
+            //before loading in scene 
+
+            GameController.instance.LoadLocationData(houseReturn.position, houseReturn.rotation);
+
+
+            //go to 'next' scene 
+            SceneManager.LoadScene(1);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 }

@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class HouseInteriorEntry : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        
+        GameController.instance.SpawnThirdPersonPrefab(this.transform.position, this.transform.rotation);
+
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }

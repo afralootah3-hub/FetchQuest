@@ -1,16 +1,17 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HouseInteriorExit : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.gameObject.tag == "Player")
+        {
+            //go to next scene
+            SceneManager.LoadScene(0);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
