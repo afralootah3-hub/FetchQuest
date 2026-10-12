@@ -1,0 +1,20 @@
+﻿title: loadPhase
+color: yellow
+---
+<<declare $dialogPhase = "">>
+<<declare $hasVisited = false>> //has player talked to this npc at least once?
+<<setPhase NPC>>
+<<if $dialogPhase == "begin">>
+<<jump start>>
+<<elseif $dialogPhase == "comeback">>
+//<<jump comeback>>
+<<elseif $dialogPhase == "quest_started">>
+//<<jump node3>>
+<<elseif $dialogPhase == "quest_completed">>
+//<<jump  doneWithQuest>>
+<<endif>>
+===
+title: start
+---
+Coworker: SIR SIR SIR 
+===
