@@ -23,7 +23,7 @@ public class questInteract : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             // do something
-            setText("Press E");
+            setText("pick up? (e)");
             canInteract = true;
         }
     }
@@ -55,6 +55,7 @@ public class questInteract : MonoBehaviour
                 changePhase.Invoke("quest_completed");
                 setText("");
                 canInteract = false;
+                this.gameObject.SetActive(false);
             }
         }
     }

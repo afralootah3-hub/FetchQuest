@@ -387,11 +387,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NpcInteract
   promptText: {fileID: 0}
-  interactText: speak?
+  interactText: speak (E)
   canInteract: 0
   npcDialogue: {fileID: 0}
-  npcCamRig: {fileID: 0}
-  storyData: {fileID: 0}
+  npcCamRig: {fileID: 3705530854257205323}
+  storyData: {fileID: 11400000, guid: 190718975ee874e4cb0389156292a3c9, type: 2}
 --- !u!1 &6806264053812655464
 GameObject:
   m_ObjectHideFlags: 0

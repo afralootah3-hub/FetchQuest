@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BOSSData
   m_EditorClassIdentifier: Assembly-CSharp::npcData
   npcName: BOSS
-  startingNode: 
-  currentPhase: 0
+  startingNode: loadPhase
+  currentPhase: 1

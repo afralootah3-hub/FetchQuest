@@ -1,8 +1,11 @@
 using StarterAssets;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using UnityEngine.WSA;
 
 public class GameController : MonoBehaviour
 {
@@ -67,11 +70,14 @@ public class GameController : MonoBehaviour
         if (b)
         {
             tpc.enabled = false;
-
+            tpc.MoveSpeed = 0;
+            Debug.Log("DISABLED MOVEMENT");
         }
         else
         {
-            tpc.enabled = true; 
+            tpc.enabled = true;
+            tpc.MoveSpeed = 2;
+            Debug.Log("ENABLED MOVEMENTS");
         }
         
     }
@@ -109,8 +115,8 @@ public class GameController : MonoBehaviour
             //This singleton method is called by each individual coin prefab
             // it adds the coinUI class method called 'coinUpdate' as a listener to the 
             // coinUpdate event! That event also passes the totalCoins int as an arguement for that 'coinUpdate' method
-            coinUpdate.AddListener(coinInventory.coinUpdate);
-            crateUpdate.AddListener(crateInventory.crateUpdate);
+            //coinUpdate.AddListener(coinInventory.coinUpdate);
+            //crateUpdate.AddListener(crateInventory.crateUpdate);
 
         }
 
