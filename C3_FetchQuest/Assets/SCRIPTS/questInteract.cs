@@ -6,17 +6,17 @@ using UnityEngine.InputSystem;
 public class questInteract : MonoBehaviour
 {
 
-    /* TO DO:
-     * set the storyData phase for my YarnSpinner script to interpret
-     * Program trigger functionality                                                DONE
-     * read input from my player to initialize the interaction 
-     * 
-    */
-
+    public string itemID;
     public TextMeshProUGUI interactText;
     public bool canInteract;
     public updateDialogPhase changePhase;
-    
+
+    public GameObject[] objsToDestory;
+
+    public void Awake()
+    {
+        itemID = this.name; //used to track which fruit you got. (you need to the correct 2, if you have the wrong ones you get a dialog)
+    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -55,9 +55,22 @@ public class questInteract : MonoBehaviour
                 changePhase.Invoke("quest_completed");
                 setText("");
                 canInteract = false;
-                this.gameObject.SetActive(false);
+                collection();
+                Debug.Log(itemID + "  : collected");
             }
         }
+    }
+
+    public void collection()
+    {
+        GameController.instance.itemCollect(itemID);
+        Destroy(this);
+        //invoke method in GameController (same as coincollect)
+        //foreach(GameObject obj in objsToDestory){
+        //    Destroy(obj);
+        //}
+        //SphereCollider col = GetComponent<SphereCollider>();
+        //col.enabled = false;
     }
 
 

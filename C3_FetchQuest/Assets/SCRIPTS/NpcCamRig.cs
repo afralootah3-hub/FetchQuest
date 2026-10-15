@@ -5,13 +5,6 @@ using Yarn.Unity;
 public class NpcCamRig : MonoBehaviour
 {
 
-    /* to do
-     * switch between the different transforms to set what view our camera is           DONE
-     * switch from 3rd person cam to cameraRig (using CineMachine priority)             DONE
-     * set when the switch will happen, by having YarnSpinner call the correct method   DONE
-     * switch BACK from the NPC_cCam to our 3rd person cam                              DONE
-    */
-
     public Transform npc_Loc;
     public Transform pc_Loc;
     public Transform pc_move_loc; 

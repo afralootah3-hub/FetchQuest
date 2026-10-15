@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CoworkerDATA
   m_EditorClassIdentifier: Assembly-CSharp::npcData
   npcName: Coworker
-  startingNode: 
+  startingNode: start2
   currentPhase: 1

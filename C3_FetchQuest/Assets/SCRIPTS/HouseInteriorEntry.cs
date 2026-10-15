@@ -7,8 +7,6 @@ public class HouseInteriorEntry : MonoBehaviour
     {
         GameController.instance.SpawnThirdPersonPrefab(this.transform.position, this.transform.rotation);
 
-
     }
 
-   
 }

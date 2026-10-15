@@ -4,8 +4,10 @@ color: yellow
 ---
 <<declare $dialogPhase = "">>
 <<declare $hasVisited = false>> //has player talked to this npc at least once?
+<<declare $acceptedQuest = false>>
 <<setPhase NPC>>
 <<if $dialogPhase == "begin">>
+<<set $hasVisited to true>>
 <<jump start>>
 <<elseif $dialogPhase == "comeback">>
 //<<jump comeback>>
@@ -21,9 +23,6 @@ color: yellow
 title: start
 position: -45,-27
 ---
-<<if $acceptedQuest == false>> //if havent accepted the quest...
-<<declare $acceptedQuest = false>>
-<<set $hasVisited = true>>    
 //give context on situation and story (we're swampped! where have you been)
 <<cam_move NPC_Cam_RIG "npc">>
 BOSS: WHERE ON EARTH HAVE YOU BEEN?
@@ -37,12 +36,10 @@ BOSS: WE'VE BEEN LOOKING FOR YOU ALL DAY?
         <<cam_move NPC_Cam_RIG "npc">>
         BOSS: Thats inexcusable! we need your help!
          <<jump giveQuest>>
-<<endif>>
 ===
 title: giveQuest
 position: -51,128
 ---
-<<set $hasVisited = false>>
 BOSS: We've been looking all over the place for <color=red>some apples</color>. 
 <<cam_move NPC_Cam_RIG "pc">>
     -> For what?
@@ -52,16 +49,15 @@ BOSS: We've been looking all over the place for <color=red>some apples</color>.
         BOSS: Will you go find some <color=red> some apples </color> for me?
         <<cam_move NPC_Cam_RIG "pc">>
             -> sure why not 
+                <<set $acceptedQuest= true>>
                 <<cam_move NPC_Cam_RIG "npc">>
                 <<getPhase NPC "quest_started">>
                 BOSS: Great! Thank you!
-                <<set $acceptedQuest = true>>
                 <<cam_move NPC_Cam_RIG "return">>
             -> no sorry, I'm busy
                 <<cam_move NPC_Cam_RIG "npc">>
                 <<getPhase NPC "comeback">>
                 BOSS: Aw.. thats a shame. 
-                <<set $acceptedQuest = false>>
                 <<cam_move NPC_Cam_RIG "return">>
 
 ===
@@ -75,6 +71,7 @@ BOSS: Welcome back!
 BOSS: Will you please grab <color=red> some apples </color> for me?
 <<cam_move NPC_Cam_RIG "pc">>
     -> Sure
+        <<set $acceptedQuest= true>>
         <<cam_move NPC_Cam_RIG "npc">>
         <<getPhase NPC "quest_started">>
         BOSS: Great! Thank you!
@@ -104,17 +101,21 @@ BOSS: Don't forget to grab <color=red> some apples </color> for me.
 title: questCompleteNode
 position: 226,-75
 ---
-<<if $hasVisited == true and $acceptedQuest == true>> //if we have talked to npc and accepted quest 
-//say thanks and give reward
-BOSS: wow thanks 
-<<elseif $hasVisited == true and $acceptedQuest == false>> //if we have the item and have seen them for the first time before accepting the quest
+<<if $hasVisited == true>> //if we have talked to npc and accepted quest 
+BOSS: has vitised is true
+    <<if $acceptedQuest == true>>
+        BOSS: has accepted is true 
+    <<endif>>
+<<else>> //if we have the item and have seen them for the first time before accepting the quest
 //similar to intro but then cuts off saying oh have you already picked up the item we've needed? have you just 
 // been holding on to it for no reason?? hand it over ill give you something in exchange 
-BOSS:Oh wow so you just declined my request to be a jerk
-<<elseif $hasVisited == true and $acceptedQuest == false>> //else anny other condition (hasvisited true, hasaccepted false) give unique dialog
-//do something
-BOSS: Oh wow u have apples i want that
+BOSS: has vitised is false
+    <<if $acceptedQuest is false>>
+    BOSS: acceptedquest is false asw
+    <<endif>>
+
 <<endif>>
+BOSS: help something is broken
 ===
 
 title: Note_1791856051195

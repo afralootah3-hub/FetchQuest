@@ -62,6 +62,9 @@ public class NpcInteract : MonoBehaviour
         {
             if (Keyboard.current.eKey.wasPressedThisFrame)
             {
+                npcDialogue = FindFirstObjectByType<DialogueRunner>();
+
+
                 npcDialogue.StartDialogue(storyData.startingNode); //passing in the node (Case sensitive)
                 npcCamRig.movePlayer();
                 Debug.Log("START NPC DIALOGUE");
@@ -100,7 +103,7 @@ public class NpcInteract : MonoBehaviour
     [YarnCommand("getPhase")]
     public void getStoryPhase(string phase)
     {
-
+        PlayerUI.instance.pUiUpdate(phase); //send current phase to pui
         Debug.Log(phase);
         if(phase == "comeback")
         {
@@ -121,6 +124,19 @@ public class NpcInteract : MonoBehaviour
         }
 
 
+    }
+
+    [YarnCommand("GetItem")]
+    public void getItemNeeded(string itemName)
+    {
+        //gets the item you need to complete the quest, playerInventory now sends the message that quest is complete
+
+    }
+
+    [YarnCommand("SetItem")]
+    public void setItemNeeded(string itemNeededName)
+    {
+        //sets the item you need to complete the quest
     }
 
 

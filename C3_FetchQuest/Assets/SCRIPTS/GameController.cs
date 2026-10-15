@@ -12,13 +12,16 @@ public class GameController : MonoBehaviour
     public static GameController instance { get; set; }
     public addCoins coinUpdate;
 
-    public addCrates crateUpdate; 
+    public addCrates crateUpdate;
+    public questInteract interactUpdate;
 
     //referencing the coinUi CLASS and not obj 
     public CoinUI coinInventory;
-    public CrateUI crateInventory; 
+    public CrateUI crateInventory;
+    public PlayerUI playerInventory;
     public int totalCoins = 0;
     public int totalCrates = 0;
+    public int totalItems = 0; //used for the apples
 
     public GameObject ThirdPersonRig;
 
@@ -28,6 +31,7 @@ public class GameController : MonoBehaviour
     public Quaternion loadRot;
 
     public List<string> coinsCollected;
+    public List<string> itemsCollected;
 
     public void Awake()
     {
@@ -45,14 +49,7 @@ public class GameController : MonoBehaviour
             // this 'action' is called whennever a new scene is loaded !
             SceneManager.sceneLoaded += OnSceneLoad;
             DontDestroyOnLoad(this);
-
-        
         }
-
-        
-
-
-
     }
 
     /// <summary>
@@ -152,6 +149,11 @@ public class GameController : MonoBehaviour
 
     }
 
+    public void loadPlayerUI(PlayerUI pUI)
+    {
+
+    }
+
     /// <summary>
     /// A public method to instantiate third person rig prefab
     /// </summary>
@@ -170,9 +172,6 @@ public class GameController : MonoBehaviour
     }
 
     #endregion 
-
-
-
     public void Start()
     {
 
@@ -200,9 +199,14 @@ public class GameController : MonoBehaviour
         coinUpdate.Invoke(totalCoins);
     }
 
+    public void itemCollect(string itemID)
+    {
+        totalItems++;
 
-    /*
-    public void loadCoins()
+        itemsCollected.Add(itemID);
+    }
+
+   /* public void loadCoins()
     {
         //a list of all coins present in the scene
         CoinCollect[] allCoinsInScene = FindObjectsByType<CoinCollect>();
@@ -223,6 +227,15 @@ public class GameController : MonoBehaviour
 
     }
     */
+
+    public void loadItems()
+    {
+        questInteract questItem = FindFirstObjectByType<questInteract>();
+        if (itemsCollected.Contains(questItem.itemID))
+        {
+            questItem.collection();
+        }
+    }
 
     public void crateCollect()
     {

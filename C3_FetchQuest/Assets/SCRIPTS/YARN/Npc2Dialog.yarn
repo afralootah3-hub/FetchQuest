@@ -1,0 +1,18 @@
+﻿title: loadPhase2
+---
+<<declare $hasTalkedto to false>>
+<<if $acceptedQuest == true>>
+<<jump node1>>
+<<elseif $acceptedQuest == false>>
+<<jump start2>>
+<<endif>>
+===
+title: start2
+---
+<<cam_move NPC_Cam_RIG "npc">>
+COWORKER: SIR! 
+COWORKER: Your break is over! The boss has been looking for you!
+<<cam_move NPC_Cam_RIG "pc">>
+    -> Why
+
+===
