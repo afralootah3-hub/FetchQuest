@@ -9,7 +9,7 @@ public class questInteract : MonoBehaviour
     public string itemID;
     public TextMeshProUGUI interactText;
     public bool canInteract;
-    public updateDialogPhase changePhase;
+    //public updateDialogPhase changePhase;
 
     public GameObject[] objsToDestory;
 
@@ -51,12 +51,13 @@ public class questInteract : MonoBehaviour
             if (Keyboard.current.eKey.wasPressedThisFrame)
             {
                 Debug.Log("Interacting with " + this.name);
-
-                changePhase.Invoke("quest_completed");
+                PlayerUI.instance.addItem(itemID); //adds to list to check if player has this item and sends it to yarnspinner
+                //changePhase.Invoke("quest_completed"); now controlled by playerUI
                 setText("");
                 canInteract = false;
                 collection();
                 Debug.Log(itemID + "  : collected");
+                PlayerUI.instance.updateInventoryUI(itemID);
             }
         }
     }
@@ -64,7 +65,9 @@ public class questInteract : MonoBehaviour
     public void collection()
     {
         GameController.instance.itemCollect(itemID);
-        Destroy(this);
+        Destroy(this.gameObject);
+
+
         //invoke method in GameController (same as coincollect)
         //foreach(GameObject obj in objsToDestory){
         //    Destroy(obj);
@@ -76,8 +79,3 @@ public class questInteract : MonoBehaviour
 
 }
 
-[System.Serializable]
-public class updateDialogPhase : UnityEvent<string>
-{
-
-}

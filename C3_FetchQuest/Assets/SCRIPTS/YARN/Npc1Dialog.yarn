@@ -3,6 +3,7 @@ position: -86,-332
 color: yellow
 ---
 <<declare $dialogPhase = "">>
+<<declare $itemNeeded = "apple">>
 <<declare $hasVisited = false>> //has player talked to this npc at least once?
 <<declare $acceptedQuest = false>>
 <<setPhase NPC>>
@@ -52,6 +53,7 @@ BOSS: We've been looking all over the place for <color=red>some apples</color>.
                 <<set $acceptedQuest= true>>
                 <<cam_move NPC_Cam_RIG "npc">>
                 <<getPhase NPC "quest_started">>
+                <<SetItem NPC "apples">>
                 BOSS: Great! Thank you!
                 <<cam_move NPC_Cam_RIG "return">>
             -> no sorry, I'm busy
@@ -95,12 +97,13 @@ BOSS: Don't forget to grab <color=red> some apples </color> for me.
         <<cam_move NPC_Cam_RIG "return">>
     -> Where can i find some apples?
         <<cam_move NPC_Cam_RIG "npc">>
-        BOSS: There should be an <color=red> apple tree outside. </color>
+        BOSS: I don't know, ask someone else
         <<cam_move NPC_Cam_RIG "return">>
 ===
 title: questCompleteNode
 position: 226,-75
 ---
+<<RemoveItem NPC "apples">>
 <<if $hasVisited == true>> //if we have talked to npc and accepted quest 
 BOSS: has vitised is true
     <<if $acceptedQuest == true>>
@@ -116,6 +119,32 @@ BOSS: has vitised is false
 
 <<endif>>
 BOSS: help something is broken
+
+<<if HasItem("oranges")>>
+<<cam_move NPC_Cam_RIG "npc">>
+BOSS: I noticed you had some oranges as well..
+<<cam_move NPC_Cam_RIG "pc">>
+    -> yeah what about it?
+        <<cam_move NPC_Cam_RIG "npc">>
+        BOSS: Can I have one?
+        <<cam_move NPC_Cam_RIG "pc">>
+            -> no.. sorry I'm really hungry 
+                <<cam_move NPC_Cam_RIG "npc">>
+                BOSS: Aw don't be so stingy.
+                <<jump rewardNode>>
+            -> sure take one 
+                <<cam_move NPC_Cam_RIG "npc">>
+                BOSS: Wow thanks!
+    -> no I don't
+        <<cam_move NPC_Cam_RIG "npc">>
+        BOSS: Hm. sure.
+        <<jump rewardNode>>
+<<endif>>
+===
+title: rewardNode
+---
+BOSS: Anyway, you deserve a promotion for this
+BOSS: Take this
 ===
 
 title: Note_1791856051195

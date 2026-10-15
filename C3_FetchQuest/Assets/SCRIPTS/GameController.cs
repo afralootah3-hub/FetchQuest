@@ -87,7 +87,7 @@ public class GameController : MonoBehaviour
     public void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         //add an additional condition to see whether or not we want to load from main transform or another location
-
+        PlayerUI.instance.DestoryAllCollected();
 
         if(scene.buildIndex == 0) //exterior scene 
         {
@@ -107,6 +107,7 @@ public class GameController : MonoBehaviour
             {
                 SpawnThirdPersonPrefab(loadPos, loadRot);
             }
+            
 
             //loadCoins();
             //This singleton method is called by each individual coin prefab
@@ -228,14 +229,14 @@ public class GameController : MonoBehaviour
     }
     */
 
-    public void loadItems()
-    {
-        questInteract questItem = FindFirstObjectByType<questInteract>();
-        if (itemsCollected.Contains(questItem.itemID))
-        {
-            questItem.collection();
-        }
-    }
+    //public void loadItems()
+    //{
+    //    questInteract questItem = FindFirstObjectByType<questInteract>();
+    //    if (itemsCollected.Contains(questItem.itemID))
+    //    {
+    //        questItem.collection();
+    //    }
+    //}
 
     public void crateCollect()
     {

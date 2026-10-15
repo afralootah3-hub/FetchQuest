@@ -16,7 +16,8 @@ public class NpcInteract : MonoBehaviour
     public bool canInteract;
     public DialogueRunner npcDialogue;
     public NpcCamRig npcCamRig;
-    public npcData storyData; 
+    public npcData storyData;
+    public Confetti confettiSC;
 
     public void Start()
     {
@@ -25,6 +26,8 @@ public class NpcInteract : MonoBehaviour
         //creating a systematized NPC rig & Interaction for multiple instances
 
         npcCamRig = transform.GetComponentInChildren<NpcCamRig>();
+        npcDialogue = FindFirstObjectByType<DialogueRunner>();
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -127,9 +130,9 @@ public class NpcInteract : MonoBehaviour
     }
 
     [YarnCommand("GetItem")]
-    public void getItemNeeded(string itemName)
+    public void getItem(string itemName)
     {
-        //gets the item you need to complete the quest, playerInventory now sends the message that quest is complete
+        //gets the items you have checks if you have oranges for hidden dialog
 
     }
 
@@ -137,8 +140,22 @@ public class NpcInteract : MonoBehaviour
     public void setItemNeeded(string itemNeededName)
     {
         //sets the item you need to complete the quest
+        PlayerUI.instance.itemNeeded = itemNeededName;
     }
 
+    
+
+    [YarnCommand("RemoveItem")]
+    public void removeItem(string itemToRemove)
+    {
+        PlayerUI.instance.removeItem(itemToRemove);
+    }
+
+    [YarnCommand("PlayEffect")]
+    public void playConfetti()
+    {
+        confettiSC.PlayEffect();
+    }
 
     public void OnApplicationQuit()
     {
