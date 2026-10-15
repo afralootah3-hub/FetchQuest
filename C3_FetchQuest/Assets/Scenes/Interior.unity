@@ -232,9 +232,9 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4984,8 +4984,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3a20293fd3f50498a43f525d74ab19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Confetti
-  pSystem1: {fileID: 0}
-  pSystem2: {fileID: 0}
+  pSystem1: {fileID: 61891425}
+  pSystem2: {fileID: 1682098492}
 --- !u!4 &575262711
 Transform:
   m_ObjectHideFlags: 0
@@ -6655,9 +6655,9 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -11640,7 +11640,7 @@ MonoBehaviour:
   npcDialogue: {fileID: 0}
   npcCamRig: {fileID: 2286118600559919653}
   storyData: {fileID: 11400000, guid: 190718975ee874e4cb0389156292a3c9, type: 2}
-  confettiSC: {fileID: 0}
+  confettiSC: {fileID: 575262710}
 --- !u!4 &5220004441337251890
 Transform:
   m_ObjectHideFlags: 0

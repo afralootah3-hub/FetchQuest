@@ -97,7 +97,7 @@ BOSS: Don't forget to grab <color=red> some apples </color> for me.
         <<cam_move NPC_Cam_RIG "return">>
     -> Where can i find some apples?
         <<cam_move NPC_Cam_RIG "npc">>
-        BOSS: I don't know, ask someone else
+        BOSS: I don't know? ask someone else
         <<cam_move NPC_Cam_RIG "return">>
 ===
 title: questCompleteNode
@@ -105,22 +105,24 @@ position: 226,-75
 ---
 <<RemoveItem NPC "apples">>
 <<if $hasVisited == true>> //if we have talked to npc and accepted quest 
-BOSS: has vitised is true
     <<if $acceptedQuest == true>>
-        BOSS: has accepted is true 
+        //has visited and accepted quest
+        BOSS: Welcome back!
+        BOSS: I see you've brought me what I've asked for! 
+        //call remove item command
+    <<elseif $acceptedQuest == false>>
+        BOSS: oh wow ur just a jerk
     <<endif>>
 <<else>> //if we have the item and have seen them for the first time before accepting the quest
 //similar to intro but then cuts off saying oh have you already picked up the item we've needed? have you just 
 // been holding on to it for no reason?? hand it over ill give you something in exchange 
-BOSS: has vitised is false
     <<if $acceptedQuest is false>>
+    BOSS: has vitised is false
     BOSS: acceptedquest is false asw
     <<endif>>
 
 <<endif>>
-BOSS: help something is broken
-
-<<if HasItem("oranges")>>
+<<if HasItem("oranges")>> //call remove item command here
 <<cam_move NPC_Cam_RIG "npc">>
 BOSS: I noticed you had some oranges as well..
 <<cam_move NPC_Cam_RIG "pc">>
@@ -135,6 +137,7 @@ BOSS: I noticed you had some oranges as well..
             -> sure take one 
                 <<cam_move NPC_Cam_RIG "npc">>
                 BOSS: Wow thanks!
+                <<jump rewardNode>>
     -> no I don't
         <<cam_move NPC_Cam_RIG "npc">>
         BOSS: Hm. sure.
@@ -145,6 +148,8 @@ title: rewardNode
 ---
 BOSS: Anyway, you deserve a promotion for this
 BOSS: Take this
+<<cam_move NPC_Cam_RIG "return">>
+<<PlayEffect NPC>>
 ===
 
 title: Note_1791856051195

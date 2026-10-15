@@ -2732,7 +2732,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  itemNeeded: 
+  itemNeeded: apples
 --- !u!1 &817977987
 GameObject:
   m_ObjectHideFlags: 0
@@ -8322,6 +8322,7 @@ MonoBehaviour:
   npcDialogue: {fileID: 0}
   npcCamRig: {fileID: 2390701312889827375}
   storyData: {fileID: 11400000, guid: f685f9671885aab449b7d2be2a5d65a8, type: 2}
+  confettiSC: {fileID: 0}
 --- !u!1 &573177171443868950
 GameObject:
   m_ObjectHideFlags: 0
@@ -9361,6 +9362,7 @@ MonoBehaviour:
   npcDialogue: {fileID: 0}
   npcCamRig: {fileID: 6520398026378485103}
   storyData: {fileID: 11400000, guid: 190718975ee874e4cb0389156292a3c9, type: 2}
+  confettiSC: {fileID: 0}
 --- !u!1 &8981361564375271510
 GameObject:
   m_ObjectHideFlags: 0

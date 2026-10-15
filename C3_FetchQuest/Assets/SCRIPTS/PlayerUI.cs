@@ -24,7 +24,7 @@ public class PlayerUI : MonoBehaviour
 
     public void Awake()
     {
-        if(instance !=null && instance != this)
+        if(instance != null && instance != this)
         {
             Destroy(this.gameObject);
             return;
