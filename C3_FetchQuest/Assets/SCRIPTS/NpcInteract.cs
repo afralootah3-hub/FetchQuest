@@ -19,6 +19,17 @@ public class NpcInteract : MonoBehaviour
     public npcData storyData;
     public Confetti confettiSC;
 
+    private void OnEnable()
+    {
+        PlayerUI.instance.changePhase.AddListener(getStoryPhase);
+    }
+
+    private void OnDisable()
+    {
+        PlayerUI.instance.changePhase.RemoveListener(getStoryPhase);
+    }
+
+
     public void Start()
     {
         //setting this variable looks a bit 'static' for our system design tastes
@@ -120,6 +131,7 @@ public class NpcInteract : MonoBehaviour
         else if(phase == "quest_completed")
         {
             storyData.currentPhase = npcData.dialogPhase.quest_completed;
+            PlayerUI.instance.pUiUpdate("quest_completed");
         }
         else
         {

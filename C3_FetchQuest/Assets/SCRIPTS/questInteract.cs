@@ -13,9 +13,11 @@ public class questInteract : MonoBehaviour
 
     public GameObject[] objsToDestory;
 
+    
     public void Awake()
     {
         itemID = this.name; //used to track which fruit you got. (you need to the correct 2, if you have the wrong ones you get a dialog)
+        
     }
 
     public void OnTriggerEnter(Collider other)

@@ -67,6 +67,8 @@ public class GameController : MonoBehaviour
         if (b)
         {
             tpc.enabled = false;
+            UnityEngine.Cursor.visible = true;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
             tpc.MoveSpeed = 0;
             Debug.Log("DISABLED MOVEMENT");
         }
@@ -74,10 +76,14 @@ public class GameController : MonoBehaviour
         {
             tpc.enabled = true;
             tpc.MoveSpeed = 2;
+            UnityEngine.Cursor.visible = false;
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             Debug.Log("ENABLED MOVEMENTS");
         }
         
     }
+
+    
 
 
     #region loading data section

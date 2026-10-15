@@ -1,18 +1,51 @@
 ﻿title: loadPhase2
 ---
 <<declare $hasTalkedto to false>>
-<<if $acceptedQuest == true>>
+<<if $acceptedQuest== true>>
 <<jump node1>>
-<<elseif $acceptedQuest == false>>
+<<elseif $finished == true>>
+<<jump node3>>
+<<else>>
 <<jump start2>>
 <<endif>>
 ===
 title: start2
 ---
+<<if $acceptedQuest == true>>
+<<jump node1>>
+<<endif>>
 <<cam_move NPC_Cam_RIG "npc">>
-COWORKER: SIR! 
+COWORKER: HEY! 
 COWORKER: Your break is over! The boss has been looking for you!
 <<cam_move NPC_Cam_RIG "pc">>
     -> Why
-
+        <<cam_move NPC_Cam_RIG "npc">>
+        COWORKER: Who knows! But you should probably head inside and ask.
+        <<cam_move NPC_Cam_RIG "return">>
+===
+title: node1
+---
+<<if $finished == true>>
+<<jump node3>>
+<<endif>>
+<<cam_move NPC_Cam_RIG "npc">>
+COWORKER: HEY! 
+COWORKER: Your break is over! The boss has been looking for you!
+<<cam_move NPC_Cam_RIG "pc">>
+    -> Why
+        <<cam_move NPC_Cam_RIG "npc">>
+        COWORKER: Who knows! But you should probably head inside and ask.
+        <<cam_move NPC_Cam_RIG "return">>
+    -> Have you seen any apples?
+        <<cam_move NPC_Cam_RIG "npc">>
+        COWORKER: <color=red>Apples? </color> Um I think I saw a crate of some nearby...
+        <<cam_move NPC_Cam_RIG "return">>
+===
+title: node3
+---
+<<cam_move NPC_Cam_RIG "npc">>
+COWORKER: HEY! 
+COWORKER: I heard you found your apples
+COWORKER: great work
+<<cam_move NPC_Cam_RIG "return">>
 ===

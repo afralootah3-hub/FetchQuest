@@ -3,6 +3,7 @@ position: -86,-332
 color: yellow
 ---
 <<declare $dialogPhase = "">>
+<<declare $finished = false>>
 <<declare $itemNeeded = "apple">>
 <<declare $hasVisited = false>> //has player talked to this npc at least once?
 <<declare $acceptedQuest = false>>
@@ -19,6 +20,7 @@ color: yellow
 <<elseif $dialogPhase == "quest_completed">>
 //<<jump  doneWithQuest>>
 <<jump questCompleteNode>>
+<<else>>
 <<endif>>
 ===
 title: start
@@ -109,17 +111,37 @@ position: 226,-75
         //has visited and accepted quest
         BOSS: Welcome back!
         BOSS: I see you've brought me what I've asked for! 
+        BOSS: Thank you so much!
         //call remove item command
     <<elseif $acceptedQuest == false>>
-        BOSS: oh wow ur just a jerk
+        BOSS: oh wow ur just a jerk, rejecting me just to do it anyway..
+        BOSS: Whatever, thanks for the apples I guess
     <<endif>>
 <<else>> //if we have the item and have seen them for the first time before accepting the quest
 //similar to intro but then cuts off saying oh have you already picked up the item we've needed? have you just 
 // been holding on to it for no reason?? hand it over ill give you something in exchange 
     <<if $acceptedQuest is false>>
-    BOSS: has vitised is false
-    BOSS: acceptedquest is false asw
-    <<endif>>
+        <<cam_move NPC_Cam_RIG "npc">>
+        BOSS: WHERE ON EARTH HAVE YOU BEEN?
+        BOSS: WE'VE BEEN LOOKING FOR YOU ALL DAY? 
+        <<cam_move NPC_Cam_RIG "pc">>
+        -> I've been on break
+            <<cam_move NPC_Cam_RIG "npc">>
+            BOSS: We need your help!
+            BOSS: I really need some-
+            BOSS: Wait you have some apples on you?
+            BOSS: Wow thanks for bringing them! I was about to ask for some.
+        -> I was lost sorry
+            <<cam_move NPC_Cam_RIG "npc">>
+            BOSS: Thats inexcusable! we need your help!
+            BOSS: I really need some-
+            BOSS: Wait you have some apples on you?
+            BOSS: Wow thanks for bringing them! I was about to ask for some.
+        -> do you want an apple?
+            BOSS: How did you know!
+            BOSS: Maybe you are a good employee after all...
+            BOSS: thanks!
+<<endif>>
 
 <<endif>>
 <<if HasItem("oranges")>> //call remove item command here
@@ -143,14 +165,17 @@ BOSS: I noticed you had some oranges as well..
         BOSS: Hm. sure.
         <<jump rewardNode>>
 <<endif>>
+<<jump rewardNode>>
 ===
 title: rewardNode
 ---
-BOSS: Anyway, you deserve a promotion for this
-BOSS: Take this
+<<set $finished = true>>
+BOSS: Anyway, you deserve a promotion for this! Great work!
+<<RemoveItem NPC "apples">>
 <<cam_move NPC_Cam_RIG "return">>
 <<PlayEffect NPC>>
 ===
+
 
 title: Note_1791856051195
 color: yellow

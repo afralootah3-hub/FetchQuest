@@ -42,9 +42,9 @@ public class PlayerUI : MonoBehaviour
         if (currentPhase == "quest_started")
         {
             Debug.Log("Updating UI...");
-            uiText.text = "Current Quest:Pick some fruit!";
+            uiText.text = "Current Quest:  Pick some fruit!";
         }
-        else if(currentPhase == "quest_complete")
+        else if(currentPhase == "quest_completed")
         {
             Debug.Log("Updating UI...");
             uiText.text = "Pick some fruit complete!";
@@ -80,9 +80,12 @@ public class PlayerUI : MonoBehaviour
     public void removeItem(string item)
     {
         _inventoryItems.Remove(item);
+        inventoryText.text = "";
         
 
     }
+
+   
 
     public void DestoryAllCollected()
     {
